@@ -42,7 +42,14 @@ export const getPlanetsContract  = async () => {
       await init();
   }
     return landContract.methods
-      .getUserPlanets().call();
+      .getUserPlanets().call({from: selectedAccount});
   }
 
+  export const buyPlanetsContract  = async (planetId, planetAmount) => {
+    if (!isInitialized) {
+      await init();
+  }
+    return landContract.methods
+      .buyLand(planetId, planetAmount).send({from: selectedAccount});
+  }
   

@@ -52,7 +52,7 @@ contract Land {
     function buyLand(uint _planetId, uint amount) public {
             require(planets[_planetId].landLeft > amount, unicode"Kocham Piwo");
             require(address(msg.sender).balance > amount, unicode"Kocham Piwo jeszcze bardziej");
-            planets[_planetId].landLeft --;
+            planets[_planetId].landLeft -= amount;
             if(userPlanets[msg.sender][_planetId].landBought != 0){
                 userPlanets[msg.sender][_planetId].landBought+= amount;
             }
