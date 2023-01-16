@@ -24,6 +24,8 @@ contract Land {
 
     constructor () public {
         addPlanet(unicode"Jowisz");
+        addPlanet(unicode"Mars");
+        addPlanet(unicode"Księżyc");
     }
 
     function addPlanet(string memory _planetName) public {
