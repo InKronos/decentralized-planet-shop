@@ -2,7 +2,7 @@ import logo from './jupiter.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import Web3 from 'web3';
-import { buyPlanetsContract, getPlanetsContract, getUserPlanetsContract, init } from './Web3Client';
+import { buyPlanetsContract, getPlanetsContract, getUserPlanetsContract, init, selectedAccount } from './Web3Client';
 import { Button, Container, Form, Modal, Nav, Navbar, Table } from 'react-bootstrap';
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
   const [showBuy, setShowBuy] = useState(true);
   const [showUser, setShowUser] = useState(false);
 
-  const handleUser = () => {setShowUser(true); setShowBuy(false)};
+  const handleUser = () => {getUserPlanets();  setShowUser(true); setShowBuy(false)};
   const handleShop = () => {setShowUser(false); setShowBuy(true)};
 
   const [planetNameToBuy, setPlanetNameToBuy] = useState("");
@@ -41,15 +41,16 @@ const App = () => {
   const getUserPlanets = () => {
     getUserPlanetsContract().then(_userPlanets => {
       setUserPlanets(_userPlanets);
-      console.log("What");
       console.log(_userPlanets);
     })
   }
   
+
   useEffect(() => {
     init();
     getPlanets();
     getUserPlanets();
+
   },[]);
 
   const buyLand = () => {
@@ -122,10 +123,15 @@ const App = () => {
           </thead>
           <tbody>
           { !loading && userPlanets.map(userPlanet => 
-            <tr>
-              <td>{userPlanet.planetName}  </td>
-              <td>{userPlanet.landBought} </td>
-            </tr>
+            <>
+              {userPlanet.planetName !== "" ?
+              <tr>
+                <td>{userPlanet.planetName}  </td>
+                <td>{userPlanet.landBought} </td>
+               </tr>
+              : null
+              }
+             </>
           )}
           </tbody>
         </Table>

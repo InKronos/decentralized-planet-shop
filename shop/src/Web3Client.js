@@ -1,10 +1,10 @@
 import Web3 from 'web3'
 import LandContractBuild from 'contracts/Land.json';
 
-let selectedAccount;
+export let selectedAccount;
 let landContract;
 let isInitialized = false;
-
+const location = document.location;
 export const init = async() => {
     let provider = window.ethereum;
 
@@ -21,6 +21,7 @@ export const init = async() => {
     });
     window.ethereum.on('accountsChanged', function (accounts){
       selectedAccount = accounts[0];
+      location.reload();
       console.log(`Selected account changed to ${selectedAccount}`);
     });
   }
