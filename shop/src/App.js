@@ -6,12 +6,7 @@ import { buyPlanetsContract, getPlanetsContract, getUserPlanetsContract, init } 
 import { Button, Container, Form, Modal, Nav, Navbar, Table } from 'react-bootstrap';
 
 const App = () => {
- 
-  const provideUrl = 'http://localhost:7545';
-  const [web3, setWeb3] = useState();
   const [loading, setLoading] = useState(true);
-  const [isUserCard, setIsUserCard] = useState(false);
-  const [isPopup, setIsPopup] = useState(false);
   const [planets, setPlanets] = useState();
   const [planetLandLeftToBuy, setPlanetLandLeftToBuy] = useState();
   const [userPlanets, setUserPlanets] = useState();

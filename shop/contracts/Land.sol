@@ -20,7 +20,7 @@ contract Land {
 
     uint public planetCounter;
 
-    event LandBought(address indexed buyer, uint indexed _planetId, uint indexed quantity);
+    event LandBought(address indexed buyer, uint indexed _planetId, uint value);
 
     constructor () public {
         addPlanet(unicode"Jowisz");
@@ -59,7 +59,9 @@ contract Land {
             else{
                 userPlanets[msg.sender][_planetId] = PlanetProduct(planets[_planetId].planetName, amount);
             }
-
-            emit LandBought(msg.sender,  _planetId, amount);
+            for(uint i = 0; i < amount; i++){
+                emit LandBought(msg.sender,  _planetId, amount);
+            }
+            
     }
 }
